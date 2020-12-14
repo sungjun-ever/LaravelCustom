@@ -30,7 +30,7 @@ Route::get('auth/register', [LoginController::class, 'registerIndex']) -> name('
 Route::POST('auth/register', [LoginController::class, 'store']);
 
 Route::get('auth/updateUser', [LoginController::class, 'updateUser']) -> name('updateUser');
-Route::post('auth/updateUser', [LoginController::class, 'update']) -> name('updateUser');
+Route::post('auth/updateUser', [LoginController::class, 'update']);
 
 Route::get('usermenu/userMenu', [userMenuController::class, 'index']) -> name('userMenu');
 

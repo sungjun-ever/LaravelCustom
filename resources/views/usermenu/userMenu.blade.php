@@ -11,12 +11,4 @@
     </div>
 
 @endsection
-@section('content')
-    <div class="userInfoSection">
-
-    </div>
-@endsection
-
-
-
 

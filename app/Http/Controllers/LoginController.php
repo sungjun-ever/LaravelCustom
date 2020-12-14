@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 
 
 class LoginController extends Controller
@@ -68,20 +67,17 @@ class LoginController extends Controller
         return view('auth/updateUser');
     }
 
-
-
     public function update(Request $request){
         $validate = $request -> validate([
             'password' => 'required|confirmed|min:10|max:16|',
         ]);
 
-        $same = Hash::check($validate['password'], auth() -> user() -> password);
+        $same = Hash::check($validate['password'], Auth::user() -> password);
         if ($same) {
             return redirect() -> back() -> with('message', '이전 비밀번호는 사용할 수 없습니다.');
         }
-        $userDetails = Auth::user();
 
-        $user = User::find($userDetails -> id);
+        $user = User::find(Auth::user()-> id);
         $user -> password = Hash::make($validate['password']);
         $user -> save();
 
